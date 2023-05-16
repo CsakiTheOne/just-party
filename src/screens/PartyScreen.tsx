@@ -9,6 +9,7 @@ import Game from "../model/Game";
 import CircleButton from "../components/base/CircleButton";
 import loading from '../media/loading.gif';
 import JDApp from "../model/JDApp";
+import Theme from "../theme/Theme";
 
 export default function PartyScreen() {
     const navigate = useNavigate();
@@ -55,22 +56,22 @@ export default function PartyScreen() {
             Vissza
         </Button>
         <Card style={{ margin: 8, }}>
-            <h3>Idő</h3>
-            <p style={{ marginBottom: 8, }}>{party.time}</p>
-            <h3>Helyszín</h3>
-            <p style={{ marginBottom: 8, }}>{party.place}</p>
-            <h3>Játék</h3>
-            <p style={{ marginBottom: 8, }}>{party.game}{party.unlimited ? ' (+Unlimited)' : ''}</p>
+            <h3><span className="material-symbols-outlined">event</span> Idő</h3>
+            <p style={{ marginBottom: Theme.dimPaddingMin, }}>{party.time}</p>
+            <h3><span className="material-symbols-outlined">pin_drop</span> Helyszín</h3>
+            <p style={{ marginBottom: Theme.dimPaddingMin, }}>{party.place}</p>
+            <h3><span className="material-symbols-outlined">live_tv</span> Játék</h3>
+            <p style={{ marginBottom: Theme.dimPaddingMin, }}>{party.game}{party.unlimited ? ' + Unlimited' : ''}</p>
             <CircleButton
-                style={{ display: 'block', marginBottom: 8, width: '100%', }}
+                style={{ display: 'block', marginBottom: Theme.dimPaddingMin, width: '100%', }}
                 onClick={() => navigate(`/songs?game=${game.name}&unlimited=${party.unlimited}`)}
             >
                 Zene lista megtekintése
             </CircleButton>
-            <h3>Alkalmazás</h3>
-            <p style={{ marginBottom: 8, }}>{game.app}</p>
+            <h3><span className="material-symbols-outlined">install_mobile</span> Alkalmazás</h3>
+            <p style={{ marginBottom: Theme.dimPaddingMin, }}>Ezt kell letöltened ha csatlakozni szeretnél:<br />{game.app}</p>
             <CircleButton
-                style={{ display: 'block', marginBottom: 8, width: '100%', }}
+                style={{ display: 'block', marginBottom: Theme.dimPaddingMin, width: '100%', }}
                 onClick={() => window.open(app.downloadAndroid, '_blank')}
             >
                 Play Áruház megnyitása

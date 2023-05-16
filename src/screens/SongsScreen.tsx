@@ -46,26 +46,16 @@ export default function SongsScreen() {
         {
             searchParams.get('unlimited') ? <>
                 <h3 style={{ margin: 8 }}>Unlimited</h3>
-                <ul
+                <Button
                     style={{
+                        display: 'block',
+                        width: 'calc(100% - 16px)',
                         margin: 8,
-                        backgroundColor: Theme.colorSurface,
-                        borderRadius: Theme.dimBorderRadius,
-                        overflow: 'hidden',
                     }}
+                    onClick={() => window.open('https://justdance.fandom.com/wiki/Just_Dance_Unlimited#Track_List', '_blank')}
                 >
-                    {
-                        songs.Unlimited.map((song: { title: string, artist: string }) => <li
-                            style={{
-                                padding: Theme.dimPaddingMin / 2,
-                                listStyle: 'none',
-                                borderBottom: `1px solid ${Theme.colorBackground}`,
-                            }}
-                        >
-                            {song.title} - {song.artist}
-                        </li>)
-                    }
-                </ul>
+                    Just Dance wiki megnyitása
+                </Button>
             </> : <></>
         }
     </Screen>;
