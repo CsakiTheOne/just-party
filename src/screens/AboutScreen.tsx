@@ -25,13 +25,13 @@ export default function AboutScreen() {
                 margin: 8,
             }}
         >
-            <p style={{ textAlign: 'justify' }}>
+            <p style={{ marginBottom: 8, textAlign: 'justify' }}>
                 <b>Sziasztok!</b> Csáki vagyok és szeretek táncolni.
                 Az, hogy tudok-e az más kérdés,
                 de attól még mindig ezt tartom a legjobb és
                 legszórakoztatóbb közösségi tevékenységnek.
             </p>
-            <p style={{ textAlign: 'justify' }}>
+            <p style={{ marginBottom: 8, textAlign: 'justify' }}>
                 Szóval csináltam ezt az oldalt,
                 ahol nyilvános Just Dance bulikat nézhettek ki magatoknak.
                 Idén nyáron szeretnék szervezni több ilyen kis eseményt

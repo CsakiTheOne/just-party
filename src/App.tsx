@@ -8,6 +8,7 @@ import PartyScreen from './screens/PartyScreen';
 function App() {
 
   document.body.style.backgroundColor = Theme.colorBackground;
+  document.body.style.color = Theme.colorOnBackground;
 
   return (
     <BrowserRouter>

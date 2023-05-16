@@ -5,10 +5,10 @@ export default function CircleButton(props: any) {
         onClick={props.onClick}
         style={{
             border: 'none',
-            padding: Theme.dimPaddingMin,
+            padding: Theme.dimPaddingMin * .5,
             backgroundColor: Theme.colorPrimary,
             color: Theme.colorOnPrimary,
-            borderRadius: Theme.dimPaddingMin * 2,
+            borderRadius: (Theme.dimPaddingMin * .5) * 2,
             cursor: 'pointer',
             ...props.style,
         }}

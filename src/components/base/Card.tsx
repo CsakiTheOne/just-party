@@ -4,7 +4,8 @@ export default function Card(props: any) {
     return <div
         style={{
             padding: Theme.dimPaddingMin,
-            backgroundColor: Theme.colorBackground,
+            backgroundColor: Theme.colorSurface,
+            color: Theme.colorOnSurface,
             border: `3px solid ${Theme.colorPrimary}`,
             borderRadius: Theme.dimBorderRadius,
             ...props.style,

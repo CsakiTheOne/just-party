@@ -61,7 +61,10 @@ export default function PartyScreen() {
             <p style={{ marginBottom: 8, }}>{party.place}</p>
             <h3>Játék</h3>
             <p style={{ marginBottom: 8, }}>{party.game}{party.unlimited ? ' (+Unlimited)' : ''}</p>
-            <CircleButton style={{ display: 'block', marginBottom: 8, width: '100%', }}>
+            <CircleButton
+                style={{ display: 'block', marginBottom: 8, width: '100%', }}
+                onClick={() => {}}
+            >
                 Zene lista megtekintése
             </CircleButton>
             <h3>Alkalmazás</h3>
