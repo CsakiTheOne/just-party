@@ -26,7 +26,7 @@ export default function AboutScreen() {
             }}
         >
             <p style={{ textAlign: 'justify' }}>
-                Sziasztok! Csáki vagyok és szeretek táncolni.
+                <b>Sziasztok!</b> Csáki vagyok és szeretek táncolni.
                 Az, hogy tudok-e az más kérdés,
                 de attól még mindig ezt tartom a legjobb és
                 legszórakoztatóbb közösségi tevékenységnek.
@@ -44,8 +44,7 @@ export default function AboutScreen() {
                 hogy megszervezzék a saját utcai Just Dance bulijukat.
                 De amíg dolgozom ezen, mindenkit bíztatok,
                 hogy jöjjetek az eseményekre, amik nektek közel vannak és
-                szervezzetek sok bulit a haverokkal ha nem!
-                Még akár JD házibulit is csinálhattok. :D
+                szervezzetek sok bulit a haverokkal! :D
             </p>
         </Card>
     </Screen>;
