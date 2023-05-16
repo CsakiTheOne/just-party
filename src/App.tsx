@@ -1,9 +1,20 @@
 import React from 'react';
+import Theme from './theme/Theme';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import AboutScreen from './screens/AboutScreen';
 
 function App() {
+
+  document.body.style.backgroundColor = Theme.colorBackground;
+
   return (
-    <div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<HomeScreen />} />
+        <Route path='about' element={<AboutScreen />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
