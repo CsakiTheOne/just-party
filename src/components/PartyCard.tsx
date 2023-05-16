@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Theme from "../theme/Theme";
 import Card from "./base/Card";
 import CircleButton from "./base/CircleButton";
 
 export default function PartyCard(props: any) {
+    const navigate = useNavigate();
+
     return <Card
         style={props.style}
     >
@@ -16,6 +19,7 @@ export default function PartyCard(props: any) {
                     marginTop: Theme.dimPaddingMin,
                     marginBottom: -(Theme.dimPaddingMin * 2 + 3),
                 }}
+                onClick={() => navigate(`/party/${props.party.id}`)}
             >
                 Megnézem
             </CircleButton>
