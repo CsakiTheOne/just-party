@@ -32,7 +32,7 @@ npm run start
 ### Barátoknak
 
 Sziasztok! Ha szeretnétek a projektben segíteni vagy valamit hozzátenni akkor van számotokra pár dolog,
-amiket tudtok, még ha nem is foglalkoztatok a React-tel vagy a PWA-kkal.
+amiket tudtok csinálni, még ha nem is foglalkoztatok a React-tel vagy a PWA-kkal.
 
 #### Frontend finomítások
 
@@ -43,7 +43,7 @@ hogy nektek több lehetőségetek legyen a testreszabásra.
 
 #### Zene lista befejezése
 
-Itt található a zene lista: [fájl megnyitása](./src/static/songs.json)
+Itt található a zene lista: [songs.json](./src/static/songs.json)
 
 Ezt jó lenne befejezni, hogy a felhasználók meg tudják nézni a választható zenéket buli előtt. A zenéket ilyen formában kell megadni:
 
