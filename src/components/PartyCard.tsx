@@ -10,9 +10,9 @@ export default function PartyCard(props: any) {
         style={props.style}
     >
         <h3>{props.party.title}</h3>
-        <p>Idő: 2023. Június</p>
-        <p>Helyszín: Várpalota</p>
-        <p>Játék: Just Dance 2022 (+Unlimited)</p>
+        <p>Idő: {props.party.time}</p>
+        <p>Helyszín: {props.party.place}</p>
+        <p>Játék: {props.party.game}{props.party.unlimited ? ' (+Unlimited)' : ''}</p>
         <div style={{ display: 'flex', justifyContent: 'flex-end', }}>
             <CircleButton
                 style={{

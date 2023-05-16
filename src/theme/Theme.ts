@@ -1,7 +1,7 @@
 import colors from "./colors";
 
 export default class Theme {
-    static colorPrimary = colors.jdPink;
+    static colorPrimary = colors.jdBlue;
     static colorOnPrimary = '#eee';
     static colorBackground = '#eee';
     static colorOnBackground = '#121212';
