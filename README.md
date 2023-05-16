@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Just Party
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A webapplication which is a place to organize and advertize public Just Dance parties.
 
-## Available Scripts
+## Contribuition guideline
 
-In the project directory, you can run:
+### Run the project
 
-### `npm start`
+You will need Node.js and npm package manager.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In the project's folder run these commands to start it:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+npm i
+npm run start
+```
 
-### `npm test`
+### For my friends
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sziasztok! Ha szeretnétek a projektben segíteni vagy valamit hozzátenni akkor van számotokra pár dolog,
+amiket tudtok, még ha nem is foglalkoztatok a React-tel vagy a PWA-kkal.
 
-### `npm run build`
+#### Frontend finomítások
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ha megy a React valamennyire, nyugodtan írj a kódba és a `style` paraméterekbe,
+viszont ha nem, a [Theme.js](./src/theme/Theme.ts) fájlban kísérletezhetsz.
+Igyekszem a projekt során oda több változót rakni és minél több helyen használni azokat,
+hogy nektek több lehetőségetek legyen a testreszabásra.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Zene lista befejezése
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Itt található a zene lista: [fájl megnyitása](./src/static/songs.json)
 
-### `npm run eject`
+Ezt jó lenne befejezni, hogy a felhasználók meg tudják nézni a választható zenéket buli előtt. A zenéket ilyen formában kell megadni:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```json
+{
+    "Játék neve": [
+        {
+            "title": "Zene címe",
+            "artist": "Előadó vagy előadók neve"
+        },
+        {
+            "title": "Másik zene címe",
+            "artist": "Előadó vagy előadók neve"
+        }
+    ],
+    "Just Dance 2022": [
+        {
+            "title": "Bainia",
+            "artist": "Bakermat"
+        },
+        {
+            "title": "Believer",
+            "artist": "Imagine Dragons"
+        },
+        ...
+    ]
+}
+```
