@@ -63,8 +63,8 @@ export default function PartyScreen() {
             <p style={{ margin: 8, }}>{game.app}</p>
             {
                 Utils.getOS() === 'Android' ? <CircleButton>Play Áruház megnyitása</CircleButton> :
-                    Utils.getOS() === 'iOS' ? <CircleButton>App Store megnyitása</CircleButton> :
-                        <p style={{ margin: 8, }}>Töltsd le telefonra!</p>
+                    Utils.getOS() === 'iPhone' ? <CircleButton>App Store megnyitása</CircleButton> :
+                        <p style={{ margin: 8, }}>Töltsd le telefonra! {navigator.platform}</p>
             }
         </Card>
     </Screen>;
