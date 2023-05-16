@@ -63,7 +63,7 @@ export default function PartyScreen() {
             <p style={{ marginBottom: 8, }}>{party.game}{party.unlimited ? ' (+Unlimited)' : ''}</p>
             <CircleButton
                 style={{ display: 'block', marginBottom: 8, width: '100%', }}
-                onClick={() => {}}
+                onClick={() => navigate(`/songs?game=${game.name}&unlimited=${party.unlimited}`)}
             >
                 Zene lista megtekintése
             </CircleButton>

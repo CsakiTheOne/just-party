@@ -3,7 +3,7 @@ import colors from "./colors";
 export default class Theme {
     static colorPrimary = colors.jdBlue;
     static colorOnPrimary = '#eee';
-    static colorSurface = '#1e1e1e';
+    static colorSurface = '#222';
     static colorOnSurface = '#eee';
     static colorBackground = '#121212';
     static colorOnBackground = '#eee';
