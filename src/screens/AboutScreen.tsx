@@ -47,5 +47,23 @@ export default function AboutScreen() {
                 szervezzetek sok bulit a haverokkal! :D
             </p>
         </Card>
+        <Card
+            style={{
+                margin: 8,
+            }}
+        >
+            <h3 style={{ marginBottom: 8 }}>Közreműködők</h3>
+            <p style={{ marginBottom: 8 }}>¯\_(ツ)_/¯</p>
+            <Button
+                style={{
+                    display: 'block',
+                    width: 'calc(100% - 16px)',
+                    margin: 8,
+                }}
+                onClick={() => window.open('https://github.com/CsakiTheOne/just-party', '_blank')}
+            >
+                Segíteni szeretnék
+            </Button>
+        </Card>
     </Screen>;
 }

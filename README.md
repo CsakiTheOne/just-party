@@ -1,21 +1,35 @@
 # Just Party
 
-A webapplication which is a place to organize and advertize public Just Dance parties.
+A hungarian webapplication which is a place to organize and advertize public Just Dance parties.
 
-## Contribuition guideline
+/
 
-### Run the project
+Egy webalkalmazás, amely egy helyként szolgál Just Dance bulik szervezésére és reklámozására.
 
-You will need Node.js and npm package manager.
+## Contribuition guideline / Hozzájárulási irányelv
 
-In the project's folder run these commands to start it:
+### A projekt futtatása
+
+Ami kell a gépedre:
+
+- Node.js
+- npm csomagkezelő
+
+A projekt mappájában add ki ezeket a parancsokat a futtatáshoz:
+
+A követelmények telepítése (ezt nem kell minden alkalommal kiadni indításhoz, csak ha változott a package.json tartalma vagy épp letöltötted a projektet):
 
 ```
-npm i
+npm install
+```
+
+Futtatás:
+
+```
 npm run start
 ```
 
-### For my friends
+### Barátoknak
 
 Sziasztok! Ha szeretnétek a projektben segíteni vagy valamit hozzátenni akkor van számotokra pár dolog,
 amiket tudtok, még ha nem is foglalkoztatok a React-tel vagy a PWA-kkal.
