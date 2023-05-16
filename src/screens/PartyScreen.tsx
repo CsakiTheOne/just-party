@@ -8,7 +8,6 @@ import Firestore from "../firebase/Firestore";
 import Game from "../model/Game";
 import CircleButton from "../components/base/CircleButton";
 import loading from '../media/loading.gif';
-import Utils from "../Utils";
 
 export default function PartyScreen() {
     const navigate = useNavigate();
@@ -61,11 +60,12 @@ export default function PartyScreen() {
             </CircleButton>
             <h3 style={{ margin: 8, }}>Alkalmazás</h3>
             <p style={{ margin: 8, }}>{game.app}</p>
-            {
-                Utils.getOS() === 'Android' ? <CircleButton>Play Áruház megnyitása</CircleButton> :
-                    Utils.getOS() === 'iPhone' ? <CircleButton>App Store megnyitása</CircleButton> :
-                        <p style={{ margin: 8, }}>Töltsd le telefonra! {navigator.platform}</p>
-            }
+            <CircleButton style={{ display: 'block', margin: 8, width: 'calc(100% - 16px)', }}>
+                Play Áruház megnyitása
+            </CircleButton>
+            <CircleButton style={{ display: 'block', margin: 8, width: 'calc(100% - 16px)', }}>
+                App Store megnyitása
+            </CircleButton>
         </Card>
     </Screen>;
 }
