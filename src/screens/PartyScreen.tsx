@@ -8,12 +8,14 @@ import Firestore from "../firebase/Firestore";
 import Game from "../model/Game";
 import CircleButton from "../components/base/CircleButton";
 import loading from '../media/loading.gif';
+import JDApp from "../model/JDApp";
 
 export default function PartyScreen() {
     const navigate = useNavigate();
     const params = useParams();
     const [party, setParty] = useState(new Party());
     const [game, setGame] = useState(new Game());
+    const [app, setApp] = useState(new JDApp());
 
     useEffect(() => {
         if (params.id) {
@@ -21,12 +23,16 @@ export default function PartyScreen() {
                 .then(newParty => {
                     setParty(newParty);
                     Firestore.getGameByName(newParty.game)
-                        .then(newGame => setGame(newGame));
+                        .then(newGame => {
+                            setGame(newGame)
+                            Firestore.getAppByName(newGame.app)
+                                .then(newApp => setApp(newApp));
+                        });
                 });
         }
     }, [params]);
 
-    if (game.name === '') {
+    if (app.name === '') {
         return <Screen>
             <div style={{ textAlign: 'center', }}>
                 <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
@@ -49,21 +55,27 @@ export default function PartyScreen() {
             Vissza
         </Button>
         <Card style={{ margin: 8, }}>
-            <h3 style={{ margin: 8, }}>Idő</h3>
-            <p style={{ margin: 8, }}>{party.time}</p>
-            <h3 style={{ margin: 8, }}>Helyszín</h3>
-            <p style={{ margin: 8, }}>{party.place}</p>
-            <h3 style={{ margin: 8, }}>Játék</h3>
-            <p style={{ margin: 8, }}>{party.game}{party.unlimited ? ' (+Unlimited)' : ''}</p>
-            <CircleButton style={{ display: 'block', margin: 8, width: 'calc(100% - 16px)', }}>
+            <h3>Idő</h3>
+            <p style={{ marginBottom: 8, }}>{party.time}</p>
+            <h3>Helyszín</h3>
+            <p style={{ marginBottom: 8, }}>{party.place}</p>
+            <h3>Játék</h3>
+            <p style={{ marginBottom: 8, }}>{party.game}{party.unlimited ? ' (+Unlimited)' : ''}</p>
+            <CircleButton style={{ display: 'block', marginBottom: 8, width: '100%', }}>
                 Zene lista megtekintése
             </CircleButton>
-            <h3 style={{ margin: 8, }}>Alkalmazás</h3>
-            <p style={{ margin: 8, }}>{game.app}</p>
-            <CircleButton style={{ display: 'block', margin: 8, width: 'calc(100% - 16px)', }}>
+            <h3>Alkalmazás</h3>
+            <p style={{ marginBottom: 8, }}>{game.app}</p>
+            <CircleButton
+                style={{ display: 'block', marginBottom: 8, width: '100%', }}
+                onClick={() => window.open(app.downloadAndroid, '_blank')}
+            >
                 Play Áruház megnyitása
             </CircleButton>
-            <CircleButton style={{ display: 'block', margin: 8, width: 'calc(100% - 16px)', }}>
+            <CircleButton
+                style={{ display: 'block', width: '100%', }}
+                onClick={() => window.open(app.downloadIOS, '_blank')}
+            >
                 App Store megnyitása
             </CircleButton>
         </Card>

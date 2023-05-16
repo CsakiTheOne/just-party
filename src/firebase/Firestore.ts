@@ -1,3 +1,4 @@
+import JDApp from '../model/JDApp';
 import Game from '../model/Game';
 import Party from '../model/Party';
 import { app } from './firebase';
@@ -23,6 +24,11 @@ export default class Firestore {
     static getGameByName(name: string): Promise<Game> {
         return getDocs(query(collection(this.db, 'games'), where('name', '==', name)))
         .then(res => res.docs[0].data() as Game);
+    }
+
+    static getAppByName(name: string): Promise<JDApp> {
+        return getDocs(query(collection(this.db, 'apps'), where('name', '==', name)))
+        .then(res => res.docs[0].data() as JDApp);
     }
 
 }
