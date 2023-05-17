@@ -8,6 +8,8 @@
 }
 
 .material-symbols-outlined {
+  padding: 0 0 6px 0;
+  transform: translateY(6px);
   font-variation-settings:
   'FILL' 1,
   'wght' 400,

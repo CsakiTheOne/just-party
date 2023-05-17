@@ -7,7 +7,7 @@ export default function PartyCard(props: any) {
     const navigate = useNavigate();
 
     return <Card
-        style={{...props.style, marginBottom: Theme.dimPaddingMin}}
+        style={{...props.style, marginBottom: Theme.dimSpacing}}
     >
         <h3>{props.party.title}</h3>
         <p><span className="material-symbols-outlined">event</span> {props.party.time}</p>
@@ -16,8 +16,8 @@ export default function PartyCard(props: any) {
         <div style={{ display: 'flex', justifyContent: 'flex-end', }}>
             <CircleButton
                 style={{
-                    marginTop: Theme.dimPaddingMin,
-                    marginBottom: -(Theme.dimPaddingMin * 2 - 3),
+                    marginTop: Theme.dimSpacing,
+                    marginBottom: -(Theme.dimSpacing * 2 - 3),
                 }}
                 onClick={() => navigate(`/party/${props.party.id}`)}
             >

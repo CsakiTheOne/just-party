@@ -42,36 +42,36 @@ export default function PartyScreen() {
     }
 
     return <Screen>
-        <h1 style={{ margin: 8, textAlign: 'center', }}>
+        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
             {party.title}
         </h1>
         <Button
             style={{
                 display: 'block',
                 width: 'calc(100% - 16px)',
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
             }}
             onClick={() => navigate('/')}
         >
             Vissza
         </Button>
-        <Card style={{ margin: 8, }}>
+        <Card style={{ margin: Theme.dimSpacing / 2, }}>
             <h3><span className="material-symbols-outlined">event</span> Idő</h3>
-            <p style={{ marginBottom: Theme.dimPaddingMin, }}>{party.time}</p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>{party.time}</p>
             <h3><span className="material-symbols-outlined">pin_drop</span> Helyszín</h3>
-            <p style={{ marginBottom: Theme.dimPaddingMin, }}>{party.place}</p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>{party.place}</p>
             <h3><span className="material-symbols-outlined">live_tv</span> Játék</h3>
-            <p style={{ marginBottom: Theme.dimPaddingMin, }}>{party.game}{party.unlimited ? ' + Unlimited' : ''}</p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>{party.game}{party.unlimited ? ' + Unlimited' : ''}</p>
             <CircleButton
-                style={{ display: 'block', marginBottom: Theme.dimPaddingMin, width: '100%', }}
+                style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
                 onClick={() => navigate(`/songs?game=${game.name}&unlimited=${party.unlimited}`)}
             >
                 Zene lista megtekintése
             </CircleButton>
             <h3><span className="material-symbols-outlined">install_mobile</span> Alkalmazás</h3>
-            <p style={{ marginBottom: Theme.dimPaddingMin, }}>Ezt kell letöltened ha csatlakozni szeretnél:<br />{game.app}</p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>Ezt kell letöltened ha csatlakozni szeretnél:<br />{game.app}</p>
             <CircleButton
-                style={{ display: 'block', marginBottom: Theme.dimPaddingMin, width: '100%', }}
+                style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
                 onClick={() => window.open(app.downloadAndroid, '_blank')}
             >
                 Play Áruház megnyitása

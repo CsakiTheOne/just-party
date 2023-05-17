@@ -8,6 +8,7 @@ import Party from "../model/Party";
 import { useEffect, useState } from "react";
 import Firestore from "../firebase/Firestore";
 import loading from '../media/loading.gif';
+import Theme from "../theme/Theme";
 
 export default function HomeScreen() {
     const navigate = useNavigate();
@@ -18,19 +19,40 @@ export default function HomeScreen() {
     }, []);
 
     return <Screen>
-        <h1 style={{ margin: 8, textAlign: 'center', }}>
+        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
             Just Party!
         </h1>
         <Button
             style={{
                 display: 'block',
                 width: 'calc(100% - 16px)',
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
             }}
             onClick={() => navigate('about')}
         >
             Nyilvános Just Dance bulik, ahová bárki jöhet!
         </Button>
+        <div style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
+            <span
+                className="material-symbols-outlined"
+                style={{ marginTop: '-12px', transform: 'translateY(12px)', marginLeft: Theme.dimSpacing / 2, marginRight: Theme.dimSpacing / 2, }}
+                onClick={() => {
+                    Theme.setDayNightTheme(Theme.getDayNightTheme() === 'light' ? 'dark' : 'light');
+                    window.location.reload();
+                }}
+            >
+                palette
+            </span>
+            {
+                Theme.getPrimaryOptions().map(option => <CircleButton
+                    style={{ marginLeft: Theme.dimSpacing / 2, marginRight: Theme.dimSpacing / 2, backgroundColor: option, }}
+                    onClick={() => {
+                        Theme.setPrimary(option);
+                        window.location.reload();
+                    }}
+                ></CircleButton>)
+            }
+        </div>
         {
             parties.length < 1 ? <div style={{ textAlign: 'center', }}>
                 <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
@@ -39,7 +61,7 @@ export default function HomeScreen() {
         {
             parties.map(party => <PartyCard
                 style={{
-                    margin: 8,
+                    margin: Theme.dimSpacing / 2,
                 }}
                 party={party}
             />)

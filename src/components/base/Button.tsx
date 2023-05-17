@@ -5,7 +5,7 @@ export default function Button(props: any) {
         onClick={props.onClick}
         style={{
             border: 'none',
-            padding: Theme.dimPaddingMin,
+            padding: Theme.dimSpacing,
             backgroundColor: Theme.colorPrimary,
             color: Theme.colorOnPrimary,
             borderRadius: Theme.dimBorderRadius,

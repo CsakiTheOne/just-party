@@ -2,19 +2,20 @@ import { useNavigate } from "react-router-dom";
 import Card from "../components/base/Card";
 import Screen from "../components/base/Screen";
 import Button from "../components/base/Button";
+import Theme from "../theme/Theme";
 
 export default function AboutScreen() {
     const navigate = useNavigate();
 
     return <Screen>
-        <h1 style={{ margin: 8, textAlign: 'center', }}>
+        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
             Just Party!
         </h1>
         <Button
             style={{
                 display: 'block',
                 width: 'calc(100% - 16px)',
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
             }}
             onClick={() => navigate('/')}
         >
@@ -22,7 +23,7 @@ export default function AboutScreen() {
         </Button>
         <Card
             style={{
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
             }}
         >
             <p style={{ marginBottom: 8, textAlign: 'justify' }}>
@@ -49,7 +50,7 @@ export default function AboutScreen() {
         </Card>
         <Card
             style={{
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
             }}
         >
             <h3 style={{ marginBottom: 8 }}>Közreműködők</h3>
@@ -58,7 +59,7 @@ export default function AboutScreen() {
                 style={{
                     display: 'block',
                     width: 'calc(100% - 16px)',
-                    margin: 8,
+                    margin: Theme.dimSpacing / 2,
                 }}
                 onClick={() => window.open('https://github.com/CsakiTheOne/just-party', '_blank')}
             >

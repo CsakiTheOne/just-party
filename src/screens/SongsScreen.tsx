@@ -9,12 +9,12 @@ export default function SongsScreen() {
     const [searchParams] = useSearchParams();
 
     return <Screen>
-        <h1 style={{ margin: 8, textAlign: 'center', }}>Zene lista</h1>
+        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>Zene lista</h1>
         <Button
             style={{
                 display: 'block',
                 width: 'calc(100% - 16px)',
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
             }}
             onClick={() => navigate(-1)}
         >
@@ -23,7 +23,7 @@ export default function SongsScreen() {
         <h3 style={{ margin: 8 }}>{searchParams.get('game')}</h3>
         <ul
             style={{
-                margin: 8,
+                margin: Theme.dimSpacing / 2,
                 backgroundColor: Theme.colorSurface,
                 borderRadius: Theme.dimBorderRadius,
                 overflow: 'hidden',
@@ -33,14 +33,14 @@ export default function SongsScreen() {
                 songs[searchParams.get('game') as string] ?
                     songs[searchParams.get('game') as string].map((song: { title: string, artist: string }) => <li
                         style={{
-                            padding: Theme.dimPaddingMin / 2,
+                            padding: Theme.dimSpacing / 2,
                             listStyle: 'none',
                             borderBottom: `1px solid ${Theme.colorBackground}`,
                         }}
                     >
                         {song.title} - {song.artist}
                     </li>) :
-                    <li style={{ padding: Theme.dimPaddingMin / 2, listStyle: 'none', }}>Ehhez még nem sikerült összeraknom a zene listát.</li>
+                    <li style={{ padding: Theme.dimSpacing / 2, listStyle: 'none', }}>Ehhez még nem sikerült összeraknom a zene listát.</li>
             }
         </ul>
         {
@@ -50,7 +50,7 @@ export default function SongsScreen() {
                     style={{
                         display: 'block',
                         width: 'calc(100% - 16px)',
-                        margin: 8,
+                        margin: Theme.dimSpacing / 2,
                     }}
                     onClick={() => window.open('https://justdance.fandom.com/wiki/Just_Dance_Unlimited#Track_List', '_blank')}
                 >
