@@ -48,7 +48,7 @@ export default function HomeScreen() {
         <Button
             style={{
                 display: 'block',
-                width: 'calc(100% - 16px)',
+                width: `calc(100% - ${Theme.dimSpacing}px)`,
                 margin: Theme.dimSpacing / 2,
             }}
             onClick={() => navigate('about')}
