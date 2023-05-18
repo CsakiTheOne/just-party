@@ -4,7 +4,7 @@ export type DayNightTheme = 'light' | 'dark';
 
 export default class Theme {
     static colorPrimary = this.getPrimary();
-    static colorOnPrimary = '#eee';
+    static colorOnPrimary = '#fff';
     static colorBackground = this.getDayNightTheme() === 'light' ? '#eee' : '#121212';
     static colorOnBackground = this.getDayNightTheme() === 'light' ? '#121212' : '#eee';
     static colorSurface = this.getDayNightTheme() === 'light' ? this.getPrimary() + '22' : this.getPrimary() + '05';
@@ -24,7 +24,7 @@ export default class Theme {
         return Object.values(colors.primaries);
     }
     static getPrimary(): string {
-        return localStorage.getItem('Theme.primary') ? localStorage.getItem('Theme.primary')! : colors.primaries.jdBlue;
+        return localStorage.getItem('Theme.primary') ? localStorage.getItem('Theme.primary')! : colors.primaries[0];
     }
     static setPrimary(color: string) {
         localStorage.setItem('Theme.primary', color);

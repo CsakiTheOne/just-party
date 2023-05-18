@@ -19,9 +19,32 @@ export default function HomeScreen() {
     }, []);
 
     return <Screen>
-        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
-            Just Party!
-        </h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+            <h1 style={{ margin: Theme.dimSpacing / 2, }}>
+                Just Party
+            </h1>
+            <div style={{ margin: Theme.dimSpacing / 2, }}>
+                <span
+                    className="material-symbols-outlined"
+                    style={{ marginTop: '-12px', transform: 'translateY(12px)', marginLeft: Theme.dimSpacing / 4, marginRight: Theme.dimSpacing / 4, cursor: 'pointer', }}
+                    onClick={() => {
+                        Theme.setDayNightTheme(Theme.getDayNightTheme() === 'light' ? 'dark' : 'light');
+                        window.location.reload();
+                    }}
+                >
+                    palette
+                </span>
+                {
+                    Theme.getPrimaryOptions().map(option => <CircleButton
+                        style={{ marginLeft: Theme.dimSpacing / 4, marginRight: Theme.dimSpacing / 4, backgroundColor: option, }}
+                        onClick={() => {
+                            Theme.setPrimary(option);
+                            window.location.reload();
+                        }}
+                    ></CircleButton>)
+                }
+            </div>
+        </div>
         <Button
             style={{
                 display: 'block',
@@ -32,27 +55,6 @@ export default function HomeScreen() {
         >
             Nyilvános Just Dance bulik, ahová bárki jöhet!
         </Button>
-        <div style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
-            <span
-                className="material-symbols-outlined"
-                style={{ marginTop: '-12px', transform: 'translateY(12px)', marginLeft: Theme.dimSpacing / 2, marginRight: Theme.dimSpacing / 2, }}
-                onClick={() => {
-                    Theme.setDayNightTheme(Theme.getDayNightTheme() === 'light' ? 'dark' : 'light');
-                    window.location.reload();
-                }}
-            >
-                palette
-            </span>
-            {
-                Theme.getPrimaryOptions().map(option => <CircleButton
-                    style={{ marginLeft: Theme.dimSpacing / 2, marginRight: Theme.dimSpacing / 2, backgroundColor: option, }}
-                    onClick={() => {
-                        Theme.setPrimary(option);
-                        window.location.reload();
-                    }}
-                ></CircleButton>)
-            }
-        </div>
         {
             parties.length < 1 ? <div style={{ textAlign: 'center', }}>
                 <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
