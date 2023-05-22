@@ -30,7 +30,7 @@ export default function AboutScreen() {
         >
             <p style={{ marginBottom: 8, textAlign: 'justify' }}>
                 <b>Hey everyone!</b> I'm Csáki and I like to dance!
-                This is one of the best and most fun social activities
+                Dancing is one of the best and most fun social activities
                 people can take part in.
             </p>
             <p style={{ marginBottom: 8, textAlign: 'justify' }}>
