@@ -9,41 +9,31 @@ import { useEffect, useState } from "react";
 import Firestore from "../firebase/Firestore";
 import loading from '../media/loading.gif';
 import Theme from "../theme/Theme";
+import LocalStorage from "../data/Local";
 
 export default function HomeScreen() {
     const navigate = useNavigate();
     const [parties, setParties] = useState<Array<Party>>([]);
 
     useEffect(() => {
+        if (LocalStorage.getCountry() === null || LocalStorage.getCountry()?.length! < 2) {
+            navigate('/settings');
+            return;
+        }
         Firestore.getParties().then(newParties => setParties(newParties));
-    }, []);
+    }, [navigate]);
 
     return <Screen>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
             <h1 style={{ margin: Theme.dimSpacing / 2, }}>
                 Just Party
             </h1>
-            <div style={{ margin: Theme.dimSpacing / 2, }}>
-                <span
-                    className="material-symbols-outlined"
-                    style={{ marginTop: '-12px', transform: 'translateY(12px)', marginLeft: Theme.dimSpacing / 4, marginRight: Theme.dimSpacing / 4, cursor: 'pointer', }}
-                    onClick={() => {
-                        Theme.setDayNightTheme(Theme.getDayNightTheme() === 'light' ? 'dark' : 'light');
-                        window.location.reload();
-                    }}
-                >
-                    palette
-                </span>
-                {
-                    Theme.getPrimaryOptions().map(option => <CircleButton
-                        style={{ marginLeft: Theme.dimSpacing / 4, marginRight: Theme.dimSpacing / 4, backgroundColor: option, }}
-                        onClick={() => {
-                            Theme.setPrimary(option);
-                            window.location.reload();
-                        }}
-                    ></CircleButton>)
-                }
-            </div>
+            <CircleButton
+                style={{ margin: Theme.dimSpacing / 2, }}
+                onClick={() => navigate('/settings')}
+            >
+                Settings
+            </CircleButton>
         </div>
         <Button
             style={{

@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
 import PartyScreen from './screens/PartyScreen';
-import SongsScreen from './screens/SongsScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 function App() {
 
@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route index element={<HomeScreen />} />
         <Route path='about' element={<AboutScreen />} />
+        <Route path='settings' element={<SettingsScreen />} />
         <Route path='party/:id' element={<PartyScreen />} />
-        <Route path='songs' element={<SongsScreen />} />
         <Route path='*' element={404} />
       </Routes>
     </BrowserRouter>

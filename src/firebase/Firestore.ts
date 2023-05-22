@@ -3,13 +3,14 @@ import Game from '../model/Game';
 import Party from '../model/Party';
 import { app } from './firebase';
 import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
+import LocalStorage from '../data/Local';
 
 export default class Firestore {
 
     static db = getFirestore(app);
 
     static getParties(): Promise<Party[]> {
-        return getDocs(collection(this.db, 'parties'))
+        return getDocs(query(collection(this.db, 'parties'), where('country', '==', LocalStorage.getCountry())))
             .then(res => res.docs.map(d => {
                 return {...d.data(), id: d.id} as Party;
             }))

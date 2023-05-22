@@ -45,6 +45,9 @@ export default function PartyScreen() {
         <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
             {party.title}
         </h1>
+        <p style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
+            by {party.organizer}
+        </p>
         <Button
             style={{
                 display: 'block',
@@ -56,20 +59,28 @@ export default function PartyScreen() {
             Go back
         </Button>
         <Card style={{ margin: Theme.dimSpacing / 2, }}>
-            <h3><span className="material-symbols-outlined">event</span> Time</h3>
-            <p style={{ marginBottom: Theme.dimSpacing, }}>{party.time}</p>
-            <h3><span className="material-symbols-outlined">pin_drop</span> Place</h3>
-            <p style={{ marginBottom: Theme.dimSpacing, }}>{party.place}</p>
-            <h3><span className="material-symbols-outlined">live_tv</span> Game</h3>
-            <p style={{ marginBottom: Theme.dimSpacing, }}>{party.game}{party.unlimited ? ' + Unlimited' : ''}</p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>
+                {party.description}
+            </p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>
+                <span className="material-symbols-outlined">event</span> {party.time}
+            </p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>
+                <span className="material-symbols-outlined">pin_drop</span> {party.place}
+            </p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>
+                <span className="material-symbols-outlined">live_tv</span> {party.game}{party.unlimited ? ' + Unlimited' : ''}
+            </p>
             <CircleButton
                 style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
-                onClick={() => navigate(`/songs?game=${game.name}&unlimited=${party.unlimited}`)}
+                onClick={() => alert('Not available yet!')}
             >
                 Check song list
             </CircleButton>
-            <h3><span className="material-symbols-outlined">install_mobile</span> App</h3>
-            <p style={{ marginBottom: Theme.dimSpacing, }}>You have to download this if you want to be scored:<br />{game.app}</p>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>
+                <span className="material-symbols-outlined">install_mobile</span> {game.app}<br />
+                (You have to download this if you want to be scored.)
+            </p>
             <CircleButton
                 style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
                 onClick={() => window.open(app.downloadAndroid, '_blank')}
