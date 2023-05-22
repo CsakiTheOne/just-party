@@ -8,14 +8,14 @@ Egy webalkalmazás, amely egy helyként szolgál Just Dance bulik szervezésére
 
 ## Contribuition guideline / Hozzájárulási irányelv
 
-### A projekt futtatása
+### Run the project / A projekt futtatása
 
-Ami kell a gépedre:
+What you need / Ami kell a gépedre:
 
 - Node.js
 - npm csomagkezelő
 
-A projekt mappájában add ki ezeket a parancsokat a futtatáshoz:
+Run these commands in the project's folder / A projekt mappájában add ki ezeket a parancsokat a futtatáshoz:
 
 A követelmények telepítése (ezt nem kell minden alkalommal kiadni indításhoz, csak ha változott a package.json tartalma vagy épp letöltötted a projektet):
 
@@ -29,7 +29,7 @@ Futtatás:
 npm run start
 ```
 
-### Barátoknak
+### For friends / Barátoknak
 
 Sziasztok! Ha szeretnétek a projektben segíteni vagy valamit hozzátenni akkor van számotokra pár dolog,
 amiket tudtok csinálni, még ha nem is foglalkoztatok a React-tel vagy a PWA-kkal.
