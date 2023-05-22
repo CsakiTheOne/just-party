@@ -8,9 +8,11 @@ export default function AboutScreen() {
     const navigate = useNavigate();
 
     return <Screen>
-        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
-            Just Party!
-        </h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+            <h1 style={{ margin: Theme.dimSpacing / 2, }}>
+                Just Party
+            </h1>
+        </div>
         <Button
             style={{
                 display: 'block',

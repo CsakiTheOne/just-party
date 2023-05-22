@@ -28,12 +28,13 @@ export default function HomeScreen() {
             <h1 style={{ margin: Theme.dimSpacing / 2, }}>
                 Just Party
             </h1>
-            <CircleButton
-                style={{ margin: Theme.dimSpacing / 2, }}
+            <span
+                className="material-symbols-outlined"
+                style={{ marginRight: Theme.dimSpacing, }}
                 onClick={() => navigate('/settings')}
             >
-                Settings
-            </CircleButton>
+                settings
+            </span>
         </div>
         <Button
             style={{

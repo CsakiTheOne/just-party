@@ -42,12 +42,16 @@ export default function PartyScreen() {
     }
 
     return <Screen>
-        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
-            {party.title}
-        </h1>
-        <p style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>
-            by {party.organizer}
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+            <div>
+                <h1 style={{ margin: Theme.dimSpacing / 2, }}>
+                    {party.title}
+                </h1>
+                <p style={{ margin: Theme.dimSpacing / 2, }}>
+                    by {party.organizer}
+                </p>
+            </div>
+        </div>
         <Button
             style={{
                 display: 'block',
