@@ -94,7 +94,7 @@ export default function SettingsScreen() {
             <div style={{ margin: Theme.dimSpacing / 2, display: 'flex', justifyContent: 'space-between', }}>
                 <span
                     className="material-symbols-outlined"
-                    style={{ marginTop: '-14px', transform: 'translateY(12px)', marginLeft: Theme.dimSpacing / 2, marginRight: Theme.dimSpacing / 2, cursor: 'pointer', }}
+                    style={{ transform: 'translateY(2px)', cursor: 'pointer', }}
                     onClick={() => {
                         LocalStorage.setDayNightTheme(LocalStorage.getDayNightTheme() === 'light' ? 'dark' : 'light');
                         window.location.reload();
@@ -104,7 +104,7 @@ export default function SettingsScreen() {
                 </span>
                 {
                     LocalStorage.getPrimaryOptions().map(option => <CircleButton
-                        style={{ marginLeft: Theme.dimSpacing / 2, marginRight: Theme.dimSpacing / 2, backgroundColor: option, }}
+                        style={{ backgroundColor: option, }}
                         onClick={() => {
                             LocalStorage.setPrimary(option);
                             window.location.reload();

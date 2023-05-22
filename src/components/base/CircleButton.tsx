@@ -6,10 +6,10 @@ export default function CircleButton(props: any) {
         style={{
             display: 'block',
             border: 'none',
-            padding: Theme.dimSpacing * .5,
+            padding: Theme.dimSpacing * .75,
             backgroundColor: Theme.colorPrimary,
             color: Theme.colorOnPrimary,
-            borderRadius: (Theme.dimSpacing * .5) * 2,
+            borderRadius: (Theme.dimSpacing * .75) * 2,
             cursor: 'pointer',
             ...props.style,
         }}
