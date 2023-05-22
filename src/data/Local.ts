@@ -10,19 +10,19 @@ export default class LocalStorage {
     }
 
     static getDayNightTheme(): DayNightTheme {
-        return localStorage.getItem('Theme.dayNightTheme') === 'light' ? 'light' : 'dark';
+        return localStorage.getItem('theme_dayNightTheme') === 'light' ? 'light' : 'dark';
     }
     static setDayNightTheme(theme: DayNightTheme) {
-        localStorage.setItem('Theme.dayNightTheme', theme);
+        localStorage.setItem('theme_dayNightTheme', theme);
     }
 
     static getPrimaryOptions(): string[] {
         return Object.values(colors.primaries);
     }
     static getPrimary(): string {
-        return localStorage.getItem('Theme.primary') ? localStorage.getItem('Theme.primary')! : colors.primaries[0];
+        return localStorage.getItem('theme_primary') && localStorage.getItem('theme_primary')?.length! > 2 ? localStorage.getItem('theme_primary')! : colors.primaries.jdBlue;
     }
     static setPrimary(color: string) {
-        localStorage.setItem('Theme.primary', color);
+        localStorage.setItem('theme_primary', color);
     }
 }
