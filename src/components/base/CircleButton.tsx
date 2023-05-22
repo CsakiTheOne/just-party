@@ -4,6 +4,7 @@ export default function CircleButton(props: any) {
     return <button
         onClick={props.onClick}
         style={{
+            display: 'block',
             border: 'none',
             padding: Theme.dimSpacing * .5,
             backgroundColor: Theme.colorPrimary,

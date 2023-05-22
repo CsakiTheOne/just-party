@@ -2,9 +2,10 @@ import JDApp from '../model/JDApp';
 import Game from '../model/Game';
 import Party from '../model/Party';
 import { app } from './firebase';
-import { collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
 import LocalStorage from '../data/Local';
 import Auth from './Auth';
+import Profile from '../model/Profile';
 
 export default class Firestore {
 
@@ -16,6 +17,17 @@ export default class Firestore {
                 return res.exists() && res.data().isOrganizer;
             })
             .catch(err => false)
+    }
+
+    static getProfile(id: string): Promise<Profile> {
+        return getDoc(doc(this.db, `users/${id}`))
+            .then(res => {
+                return { ...res.data(), id: res.id } as Profile;
+            })
+            .catch(err => Promise.reject());
+    }
+    static setProfile(profile: Profile) {
+        setDoc(doc(this.db, `users/${profile.id}`), profile);
     }
 
     static getParties(): Promise<Party[]> {

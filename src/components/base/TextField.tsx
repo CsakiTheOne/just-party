@@ -3,6 +3,7 @@ import Theme from "../../theme/Theme";
 export default function TextField(props: any) {
     return <input
         style={{
+            display: 'block',
             padding: Theme.dimSpacing,
             backgroundColor: Theme.colorSurface,
             color: Theme.colorOnSurface,

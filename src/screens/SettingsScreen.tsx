@@ -8,11 +8,22 @@ import Theme from "../theme/Theme";
 import { CountryDropdown } from "react-country-region-selector";
 import LocalStorage from "../data/Local";
 import Auth from "../firebase/Auth";
+import TextField from "../components/base/TextField";
+import Profile from "../model/Profile";
+import Firestore from "../firebase/Firestore";
 
 export default function SettingsScreen() {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(Auth.auth.currentUser !== null);
+    const [profile, setProfile] = useState(new Profile());
     const [country, setCountry] = useState(LocalStorage.getCountry() ? LocalStorage.getCountry()! : '');
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            Firestore.getProfile(Auth.auth.currentUser!.uid)
+                .then(newProfile => setProfile(newProfile));
+        }
+    }, [isLoggedIn]);
 
     return <Screen>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
@@ -33,6 +44,10 @@ export default function SettingsScreen() {
         <Card style={{ margin: Theme.dimSpacing / 2, }}>
             <h3 style={{ margin: Theme.dimSpacing / 2, }}>Account</h3>
             <CircleButton
+                style={{
+                    margin: Theme.dimSpacing / 2,
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                }}
                 onClick={() => {
                     if (isLoggedIn) {
                         Auth.logout();
@@ -46,6 +61,23 @@ export default function SettingsScreen() {
             >
                 {isLoggedIn ? 'Log out' : 'Log in'}
             </CircleButton>
+            {
+                isLoggedIn ? <>
+                    <TextField
+                        style={{
+                            margin: Theme.dimSpacing / 2,
+                            width: `calc(100% - ${Theme.dimSpacing}px)`,
+                        }}
+                        hint={'Name'}
+                        value={profile.displayName}
+                        onChange={(e: string) => {
+                            const newProfile = { ...profile, displayName: e };
+                            setProfile(newProfile);
+                            Firestore.setProfile(newProfile);
+                        }}
+                    />
+                </> : <></>
+            }
         </Card>
         <Card style={{ margin: Theme.dimSpacing / 2, }}>
             <h3 style={{ margin: Theme.dimSpacing / 2, }}>Country</h3>
