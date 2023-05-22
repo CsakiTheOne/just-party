@@ -1,19 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import PartyCard from "../components/PartyCard";
 import Button from "../components/base/Button";
 import Card from "../components/base/Card";
 import CircleButton from "../components/base/CircleButton";
 import Screen from "../components/base/Screen";
-import Party from "../model/Party";
 import { useEffect, useState } from "react";
-import Firestore from "../firebase/Firestore";
-import loading from '../media/loading.gif';
 import Theme from "../theme/Theme";
 import { CountryDropdown } from "react-country-region-selector";
 import LocalStorage from "../data/Local";
+import Auth from "../firebase/Auth";
 
-export default function HomeScreen() {
+export default function SettingsScreen() {
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(Auth.auth.currentUser !== null);
     const [country, setCountry] = useState(LocalStorage.getCountry() ? LocalStorage.getCountry()! : '');
 
     return <Screen>
@@ -32,6 +30,23 @@ export default function HomeScreen() {
         >
             Go back
         </Button>
+        <Card style={{ margin: Theme.dimSpacing / 2, }}>
+            <h3 style={{ margin: Theme.dimSpacing / 2, }}>Account</h3>
+            <CircleButton
+                onClick={() => {
+                    if (isLoggedIn) {
+                        Auth.logout();
+                        setIsLoggedIn(false);
+                    }
+                    else {
+                        Auth.loginWithPopup()
+                            .then(user => setIsLoggedIn(true));
+                    }
+                }}
+            >
+                {isLoggedIn ? 'Log out' : 'Log in'}
+            </CircleButton>
+        </Card>
         <Card style={{ margin: Theme.dimSpacing / 2, }}>
             <h3 style={{ margin: Theme.dimSpacing / 2, }}>Country</h3>
             <CountryDropdown

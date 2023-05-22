@@ -10,6 +10,7 @@ import Firestore from "../firebase/Firestore";
 import loading from '../media/loading.gif';
 import Theme from "../theme/Theme";
 import LocalStorage from "../data/Local";
+import Auth from "../firebase/Auth";
 
 export default function HomeScreen() {
     const navigate = useNavigate();
@@ -58,6 +59,19 @@ export default function HomeScreen() {
                 }}
                 party={party}
             />)
+        }
+        {
+            Auth.auth.currentUser ?
+                <Button
+                    style={{
+                        display: 'block',
+                        width: `calc(100% - ${Theme.dimSpacing}px)`,
+                        margin: Theme.dimSpacing / 2,
+                    }}
+                    onClick={() => navigate('party/new')}
+                >
+                    <span className="material-symbols-outlined">add</span> Create party
+                </Button> : <></>
         }
     </Screen>;
 }

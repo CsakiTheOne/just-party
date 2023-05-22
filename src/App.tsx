@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
 import PartyScreen from './screens/PartyScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import NewPartyScreen from './screens/NewPartyScreen';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='about' element={<AboutScreen />} />
         <Route path='settings' element={<SettingsScreen />} />
         <Route path='party/:id' element={<PartyScreen />} />
+        <Route path='party/new' element={<NewPartyScreen />} />
         <Route path='*' element={404} />
       </Routes>
     </BrowserRouter>
