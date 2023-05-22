@@ -9,7 +9,7 @@ export default function SongsScreen() {
     const [searchParams] = useSearchParams();
 
     return <Screen>
-        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>Zene lista</h1>
+        <h1 style={{ margin: Theme.dimSpacing / 2, textAlign: 'center', }}>Song list</h1>
         <Button
             style={{
                 display: 'block',
@@ -18,9 +18,9 @@ export default function SongsScreen() {
             }}
             onClick={() => navigate(-1)}
         >
-            Vissza
+            Go back
         </Button>
-        <h3 style={{ margin: 8 }}>{searchParams.get('game')}</h3>
+        <h3 style={{ margin: Theme.dimSpacing / 2 }}>{searchParams.get('game')}</h3>
         <ul
             style={{
                 margin: Theme.dimSpacing / 2,
@@ -40,7 +40,7 @@ export default function SongsScreen() {
                     >
                         {song.title} - {song.artist}
                     </li>) :
-                    <li style={{ padding: Theme.dimSpacing / 2, listStyle: 'none', }}>Ehhez még nem sikerült összeraknom a zene listát.</li>
+                    <li style={{ padding: Theme.dimSpacing / 2, listStyle: 'none', }}>404</li>
             }
         </ul>
         {
@@ -54,7 +54,7 @@ export default function SongsScreen() {
                     }}
                     onClick={() => window.open('https://justdance.fandom.com/wiki/Just_Dance_Unlimited#Track_List', '_blank')}
                 >
-                    Just Dance wiki megnyitása
+                    Open Just Dance Wiki
                 </Button>
             </> : <></>
         }

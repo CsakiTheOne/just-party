@@ -21,7 +21,7 @@ export default function PartyCard(props: any) {
                 }}
                 onClick={() => navigate(`/party/${props.party.id}`)}
             >
-                Megnézem
+                Check it out
             </CircleButton>
         </div>
     </Card>

@@ -53,34 +53,34 @@ export default function PartyScreen() {
             }}
             onClick={() => navigate('/')}
         >
-            Vissza
+            Go back
         </Button>
         <Card style={{ margin: Theme.dimSpacing / 2, }}>
-            <h3><span className="material-symbols-outlined">event</span> Idő</h3>
+            <h3><span className="material-symbols-outlined">event</span> Time</h3>
             <p style={{ marginBottom: Theme.dimSpacing, }}>{party.time}</p>
-            <h3><span className="material-symbols-outlined">pin_drop</span> Helyszín</h3>
+            <h3><span className="material-symbols-outlined">pin_drop</span> Place</h3>
             <p style={{ marginBottom: Theme.dimSpacing, }}>{party.place}</p>
-            <h3><span className="material-symbols-outlined">live_tv</span> Játék</h3>
+            <h3><span className="material-symbols-outlined">live_tv</span> Game</h3>
             <p style={{ marginBottom: Theme.dimSpacing, }}>{party.game}{party.unlimited ? ' + Unlimited' : ''}</p>
             <CircleButton
                 style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
                 onClick={() => navigate(`/songs?game=${game.name}&unlimited=${party.unlimited}`)}
             >
-                Zene lista megtekintése
+                Check song list
             </CircleButton>
-            <h3><span className="material-symbols-outlined">install_mobile</span> Alkalmazás</h3>
-            <p style={{ marginBottom: Theme.dimSpacing, }}>Ezt kell letöltened ha csatlakozni szeretnél:<br />{game.app}</p>
+            <h3><span className="material-symbols-outlined">install_mobile</span> App</h3>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>You have to download this if you want to be scored:<br />{game.app}</p>
             <CircleButton
                 style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
                 onClick={() => window.open(app.downloadAndroid, '_blank')}
             >
-                Play Áruház megnyitása
+                Open Google Play Store
             </CircleButton>
             <CircleButton
                 style={{ display: 'block', width: '100%', }}
                 onClick={() => window.open(app.downloadIOS, '_blank')}
             >
-                App Store megnyitása
+                Open App Store
             </CircleButton>
         </Card>
     </Screen>;

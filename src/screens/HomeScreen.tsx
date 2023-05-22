@@ -53,7 +53,7 @@ export default function HomeScreen() {
             }}
             onClick={() => navigate('about')}
         >
-            Nyilvános Just Dance bulik, ahová bárki jöhet!
+            Public Just Dance parties where anyone can join!
         </Button>
         {
             parties.length < 1 ? <div style={{ textAlign: 'center', }}>

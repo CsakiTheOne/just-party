@@ -19,7 +19,7 @@ export default function AboutScreen() {
             }}
             onClick={() => navigate('/')}
         >
-            Vissza
+            Go back
         </Button>
         <Card
             style={{
@@ -27,25 +27,18 @@ export default function AboutScreen() {
             }}
         >
             <p style={{ marginBottom: 8, textAlign: 'justify' }}>
-                <b>Sziasztok!</b> Csáki vagyok és szeretek táncolni.
-                Az, hogy tudok-e az más kérdés,
-                de attól még mindig ezt tartom a legjobb és
-                legszórakoztatóbb közösségi tevékenységnek.
+                <b>Hey everyone!</b> I'm Csáki and I like to dance!
+                This is one of the best and most fun social activities
+                people can take part in.
             </p>
             <p style={{ marginBottom: 8, textAlign: 'justify' }}>
-                Szóval csináltam ezt az oldalt,
-                ahol nyilvános Just Dance bulikat nézhettek ki magatoknak.
-                Idén nyáron szeretnék szervezni több ilyen kis eseményt
-                Várpalotán, Veszprémben és talán más helyeken is, mint például
-                Fehérváron, Zalakaroson, stb.
+                So I made this website where you can check out or even organize public Just Dance parties.
+                This summer I plan to organize some of my own as well in some Hungarian cities.
             </p>
             <p style={{ textAlign: 'justify' }}>
-                Ahová nem sikerül eljutnom, ott sem kell aggódni.
-                Ezen az oldalon szeretnék lehetőséget adni <b>másoknak is</b>,
-                hogy megszervezzék a saját utcai Just Dance bulijukat.
-                De amíg dolgozom ezen, mindenkit bíztatok,
-                hogy jöjjetek az eseményekre, amik nektek közel vannak és
-                szervezzetek sok bulit a haverokkal! :D
+                I'm just a Hungarian boyo, but don't worry, anyone can dance!
+                On this site you can create your own events where others can join.
+                So no matter where you are, Just Dance!
             </p>
         </Card>
         <Card
@@ -53,7 +46,7 @@ export default function AboutScreen() {
                 margin: Theme.dimSpacing / 2,
             }}
         >
-            <h3 style={{ marginBottom: 8 }}>Közreműködők</h3>
+            <h3 style={{ marginBottom: 8 }}>Contributors</h3>
             <p style={{ marginBottom: 8 }}>¯\_(ツ)_/¯</p>
             <Button
                 style={{
@@ -63,7 +56,7 @@ export default function AboutScreen() {
                 }}
                 onClick={() => window.open('https://github.com/CsakiTheOne/just-party', '_blank')}
             >
-                Segíteni szeretnék
+                I want to help!
             </Button>
         </Card>
     </Screen>;
