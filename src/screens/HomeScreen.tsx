@@ -11,32 +11,25 @@ import loading from '../media/loading.gif';
 import Theme from "../theme/Theme";
 import LocalStorage from "../data/Local";
 import Auth from "../firebase/Auth";
+import { CountryDropdown } from "react-country-region-selector";
+import TopBar from "../components/TopBar";
+import CountryField from "../components/base/CountryField";
 
 export default function HomeScreen() {
     const navigate = useNavigate();
+    const [isSetupNeeded, setIsSetupNeeded] = useState(false);
     const [parties, setParties] = useState<Array<Party>>([]);
 
     useEffect(() => {
         if (LocalStorage.getCountry() === null || LocalStorage.getCountry()?.length! < 2) {
-            navigate('/settings');
+            setIsSetupNeeded(true);
             return;
         }
         Firestore.getParties().then(newParties => setParties(newParties));
     }, [navigate]);
 
     return <Screen>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-            <h1 style={{ margin: Theme.dimSpacing / 2, }}>
-                Just Party
-            </h1>
-            <span
-                className="material-symbols-outlined"
-                style={{ marginRight: Theme.dimSpacing, }}
-                onClick={() => navigate('/settings')}
-            >
-                settings
-            </span>
-        </div>
+        <TopBar />
         <Button
             style={{
                 display: 'block',
@@ -48,30 +41,46 @@ export default function HomeScreen() {
             Public Just Dance parties where anyone can join!
         </Button>
         {
-            parties.length < 1 ? <div style={{ textAlign: 'center', }}>
-                <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
-            </div> : <></>
-        }
-        {
-            parties.map(party => <PartyCard
-                style={{
-                    margin: Theme.dimSpacing / 2,
-                }}
-                party={party}
-            />)
-        }
-        {
-            Auth.auth.currentUser ?
-                <Button
-                    style={{
-                        display: 'block',
-                        width: `calc(100% - ${Theme.dimSpacing}px)`,
-                        margin: Theme.dimSpacing / 2,
-                    }}
-                    onClick={() => navigate('party/new')}
-                >
-                    <span className="material-symbols-outlined">add</span> Create party
-                </Button> : <></>
+            isSetupNeeded ?
+                <Card style={{ margin: Theme.dimSpacing / 2, }}>
+                    <h3 style={{ margin: Theme.dimSpacing / 2, }}>Country</h3>
+                    <CountryField
+                        style={{
+                            width: '100%',
+                        }}
+                        value=''
+                        onChange={() => {
+                            window.location.reload();
+                        }}
+                    />
+                </Card> : <>
+                    {
+                        parties.length < 1 ? <div style={{ textAlign: 'center', }}>
+                            <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
+                        </div> : <></>
+                    }
+                    {
+                        parties.map(party => <PartyCard
+                            style={{
+                                margin: Theme.dimSpacing / 2,
+                            }}
+                            party={party}
+                        />)
+                    }
+                    {
+                        Auth.auth.currentUser ?
+                            <Button
+                                style={{
+                                    display: 'block',
+                                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                                    margin: Theme.dimSpacing / 2,
+                                }}
+                                onClick={() => navigate('party/new')}
+                            >
+                                <span className="material-symbols-outlined">add</span> Create party
+                            </Button> : <></>
+                    }
+                </>
         }
     </Screen>;
 }

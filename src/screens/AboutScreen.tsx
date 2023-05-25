@@ -3,16 +3,13 @@ import Card from "../components/base/Card";
 import Screen from "../components/base/Screen";
 import Button from "../components/base/Button";
 import Theme from "../theme/Theme";
+import TopBar from "../components/TopBar";
 
 export default function AboutScreen() {
     const navigate = useNavigate();
 
     return <Screen>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-            <h1 style={{ margin: Theme.dimSpacing / 2, }}>
-                Just Party
-            </h1>
-        </div>
+        <TopBar />
         <Button
             style={{
                 display: 'block',

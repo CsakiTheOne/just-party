@@ -11,6 +11,7 @@ import Auth from "../firebase/Auth";
 import TextField from "../components/base/TextField";
 import Profile from "../model/Profile";
 import Firestore from "../firebase/Firestore";
+import CountryField from "../components/base/CountryField";
 
 export default function SettingsScreen() {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function SettingsScreen() {
                 width: `calc(100% - ${Theme.dimSpacing}px)`,
                 margin: Theme.dimSpacing / 2,
             }}
-            onClick={() => navigate('/')}
+            onClick={() => navigate(-1)}
         >
             Go back
         </Button>
@@ -81,11 +82,13 @@ export default function SettingsScreen() {
         </Card>
         <Card style={{ margin: Theme.dimSpacing / 2, }}>
             <h3 style={{ margin: Theme.dimSpacing / 2, }}>Country</h3>
-            <CountryDropdown
+            <CountryField
+                style={{
+                    width: '100%',
+                }}
                 value={country}
-                onChange={e => {
+                onChange={(e: string) => {
                     setCountry(e);
-                    LocalStorage.setCountry(e);
                 }}
             />
         </Card>
