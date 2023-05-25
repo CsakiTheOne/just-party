@@ -9,10 +9,14 @@ import Firestore from "../firebase/Firestore";
 import TextField from "../components/base/TextField";
 import LocalStorage from "../data/Local";
 import Profile from "../model/Profile";
+import Game from "../model/Game";
+import Party from "../model/Party";
 
 export default function NewPartyScreen() {
     const navigate = useNavigate();
     const [profile, setProfile] = useState(new Profile());
+    const [games, setGames] = useState<Game[]>([]);
+    const [party, setParty] = useState(new Party());
 
     useEffect(() => {
         if (Auth.auth.currentUser === null) {
@@ -27,7 +31,9 @@ export default function NewPartyScreen() {
                     alert('You are not an organizer!');
                     navigate('/');
                 }
-            })
+            });
+        Firestore.getGames()
+            .then(newGames => setGames(newGames));
     }, [navigate]);
 
     return <Screen>
@@ -56,8 +62,8 @@ export default function NewPartyScreen() {
             </p>
             <TextField
                 hint='Title'
-                value={''}
-                onChange={(e: string) => { }}
+                value={party.title}
+                onChange={(e: string) => setParty({ ...party, title: e })}
                 style={{
                     margin: Theme.dimSpacing / 2,
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
@@ -65,8 +71,8 @@ export default function NewPartyScreen() {
             />
             <TextField
                 hint='Description'
-                value={''}
-                onChange={(e: string) => { }}
+                value={party.description}
+                onChange={(e: string) => setParty({ ...party, description: e })}
                 style={{
                     margin: Theme.dimSpacing / 2,
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
@@ -74,8 +80,8 @@ export default function NewPartyScreen() {
             />
             <TextField
                 hint='Time'
-                value={''}
-                onChange={(e: string) => { }}
+                value={party.time}
+                onChange={(e: string) => setParty({ ...party, time: e })}
                 style={{
                     margin: Theme.dimSpacing / 2,
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
@@ -83,8 +89,8 @@ export default function NewPartyScreen() {
             />
             <TextField
                 hint='Place'
-                value={''}
-                onChange={(e: string) => { }}
+                value={party.place}
+                onChange={(e: string) => setParty({ ...party, place: e })}
                 style={{
                     margin: Theme.dimSpacing / 2,
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
@@ -95,9 +101,20 @@ export default function NewPartyScreen() {
                     display: 'block',
                     margin: Theme.dimSpacing / 2,
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
+                    padding: Theme.dimSpacing,
+                    backgroundColor: Theme.colorBackground,
+                    color: Theme.colorOnBackground,
+                    border: `2px solid ${Theme.colorPrimary}`,
+                    borderRadius: Theme.dimBorderRadius,
                 }}
+
+                value={party.game}
+                onChange={e => setParty({ ...party, game: e.target.value })}
             >
                 <option>Select a game...</option>
+                {
+                    games.map(game => <option value={game.name}>{game.name}</option>)
+                }
             </select>
             <label
                 style={{
@@ -106,11 +123,28 @@ export default function NewPartyScreen() {
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
                 }}
             >
-                <input type="checkbox" />
+                <input
+                    type="checkbox"
+                    checked={party.unlimited}
+                    onChange={e => setParty({ ...party, unlimited: e.target.checked })}
+                />
                 <span style={{ marginLeft: Theme.dimSpacing / 2, }}>
                     Unlimited
                 </span>
             </label>
+            <Button
+                style={{
+                    margin: Theme.dimSpacing / 2,
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                }}
+                onClick={() => {
+                    Firestore.createParty({ ...party, country: LocalStorage.getCountry()!, organizer: profile.id })
+                        .then(id => navigate(`/party/${id}`))
+                        .catch(err => alert("Couldn't create party."));
+                }}
+            >
+                Create
+            </Button>
         </Card>
     </Screen>;
 }

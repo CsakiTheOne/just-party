@@ -1,5 +1,5 @@
 export default class Party {
-    id: string | undefined;
+    id: string = '';
     organizer: string = '';
     title: string = '';
     description: string = '';

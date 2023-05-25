@@ -25,23 +25,52 @@ export default function PartyScreen() {
             Firestore.getParty(params.id)
                 .then(newParty => {
                     setParty(newParty);
-                    Firestore.getProfile(newParty.organizer)
-                        .then(newOrganizer => setOrganizer(newOrganizer));
-                    Firestore.getGameByName(newParty.game)
-                        .then(newGame => {
-                            setGame(newGame)
-                            Firestore.getAppByName(newGame.app)
-                                .then(newApp => setApp(newApp));
-                        });
+                    if (newParty.organizer) {
+                        Firestore.getProfile(newParty.organizer)
+                            .then(newOrganizer => setOrganizer(newOrganizer));
+                    }
+                    if (newParty.game) {
+                        Firestore.getGameByName(newParty.game)
+                            .then(newGame => {
+                                setGame(newGame)
+                                Firestore.getAppByName(newGame.app)
+                                    .then(newApp => setApp(newApp));
+                            });
+                    }
                 });
         }
     }, [params]);
 
-    if (app.name === '' || organizer.displayName === '') {
+    if (app && organizer && (app.name === '' || organizer.displayName === '')) {
         return <Screen>
             <div style={{ textAlign: 'center', }}>
                 <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
             </div>
+        </Screen>;
+    }
+
+    if (!party.title || !party.organizer) {
+        return <Screen>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
+                <div>
+                    <h1 style={{ margin: Theme.dimSpacing / 2, }}>
+                        Party does not exist
+                    </h1>
+                    <p style={{ margin: Theme.dimSpacing / 2, }}>
+                        This party is over :(
+                    </p>
+                </div>
+            </div>
+            <Button
+                style={{
+                    display: 'block',
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                    margin: Theme.dimSpacing / 2,
+                }}
+                onClick={() => navigate('/')}
+            >
+                Go back
+            </Button>
         </Screen>;
     }
 

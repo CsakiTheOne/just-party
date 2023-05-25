@@ -2,7 +2,7 @@ import JDApp from '../model/JDApp';
 import Game from '../model/Game';
 import Party from '../model/Party';
 import { app } from './firebase';
-import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
 import LocalStorage from '../data/Local';
 import Auth from './Auth';
 import Profile from '../model/Profile';
@@ -41,6 +41,16 @@ export default class Firestore {
     static getParty(id: string): Promise<Party> {
         return getDoc(doc(this.db, `parties/${id}`))
             .then(res => res.data() as Party);
+    }
+
+    static createParty(party: Party): Promise<string> {
+        return addDoc(collection(this.db, 'parties'), party)
+            .then(res => res.id);
+    }
+
+    static getGames(): Promise<Game[]> {
+        return getDocs(collection(this.db, 'games'))
+            .then(res => res.docs.map(d => d.data() as Game));
     }
 
     static getGameByName(name: string): Promise<Game> {
