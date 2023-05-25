@@ -10,11 +10,13 @@ import CircleButton from "../components/base/CircleButton";
 import loading from '../media/loading.gif';
 import JDApp from "../model/JDApp";
 import Theme from "../theme/Theme";
+import Profile from "../model/Profile";
 
 export default function PartyScreen() {
     const navigate = useNavigate();
     const params = useParams();
     const [party, setParty] = useState(new Party());
+    const [organizer, setOrganizer] = useState(new Profile());
     const [game, setGame] = useState(new Game());
     const [app, setApp] = useState(new JDApp());
 
@@ -23,6 +25,8 @@ export default function PartyScreen() {
             Firestore.getParty(params.id)
                 .then(newParty => {
                     setParty(newParty);
+                    Firestore.getProfile(newParty.organizer)
+                        .then(newOrganizer => setOrganizer(newOrganizer));
                     Firestore.getGameByName(newParty.game)
                         .then(newGame => {
                             setGame(newGame)
@@ -33,7 +37,7 @@ export default function PartyScreen() {
         }
     }, [params]);
 
-    if (app.name === '') {
+    if (app.name === '' || organizer.displayName === '') {
         return <Screen>
             <div style={{ textAlign: 'center', }}>
                 <img style={{ margin: 64, width: 128, }} src={loading} alt="" />
@@ -48,7 +52,7 @@ export default function PartyScreen() {
                     {party.title}
                 </h1>
                 <p style={{ margin: Theme.dimSpacing / 2, }}>
-                    by {party.organizer}
+                    by {organizer.displayName}
                 </p>
             </div>
         </div>

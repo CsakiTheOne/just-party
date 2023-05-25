@@ -10,7 +10,7 @@ export default function PartyCard(props: any) {
         style={{...props.style, marginBottom: Theme.dimSpacing * 1.25}}
     >
         <h3>{props.party.title}</h3>
-        <p>by {props.party.organizer}</p>
+        {/*<p>by {props.party.organizer}</p>*/}
         <p><span className="material-symbols-outlined">event</span> {props.party.time}</p>
         <p><span className="material-symbols-outlined">pin_drop</span> {props.party.place}</p>
         <p><span className="material-symbols-outlined">live_tv</span> {props.party.game}{props.party.unlimited ? ' + Unlimited' : ''}</p>
