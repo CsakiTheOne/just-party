@@ -8,9 +8,11 @@ import Auth from "../firebase/Auth";
 import Firestore from "../firebase/Firestore";
 import TextField from "../components/base/TextField";
 import LocalStorage from "../data/Local";
+import Profile from "../model/Profile";
 
 export default function NewPartyScreen() {
     const navigate = useNavigate();
+    const [profile, setProfile] = useState(new Profile());
 
     useEffect(() => {
         if (Auth.auth.currentUser === null) {
@@ -18,9 +20,10 @@ export default function NewPartyScreen() {
             navigate('/');
             return;
         }
-        Firestore.isUserOrganizer()
-            .then(res => {
-                if (!res) {
+        Firestore.getProfile(Auth.auth.currentUser.uid)
+            .then(newProfile => {
+                setProfile(newProfile);
+                if (!newProfile.isOrganizer) {
                     alert('You are not an organizer!');
                     navigate('/');
                 }
@@ -47,6 +50,9 @@ export default function NewPartyScreen() {
             <h3 style={{ margin: Theme.dimSpacing / 2, }}>New party</h3>
             <p style={{ margin: Theme.dimSpacing / 2, }}>
                 Country: {LocalStorage.getCountry()}
+            </p>
+            <p style={{ margin: Theme.dimSpacing / 2, }}>
+                Organizer: {profile.displayName}
             </p>
             <TextField
                 hint='Title'
@@ -84,6 +90,27 @@ export default function NewPartyScreen() {
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
                 }}
             />
+            <select
+                style={{
+                    display: 'block',
+                    margin: Theme.dimSpacing / 2,
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                }}
+            >
+                <option>Select a game...</option>
+            </select>
+            <label
+                style={{
+                    display: 'block',
+                    margin: Theme.dimSpacing / 2,
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                }}
+            >
+                <input type="checkbox" />
+                <span style={{ marginLeft: Theme.dimSpacing / 2, }}>
+                    Unlimited
+                </span>
+            </label>
         </Card>
     </Screen>;
 }
