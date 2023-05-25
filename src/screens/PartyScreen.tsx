@@ -11,6 +11,7 @@ import loading from '../media/loading.gif';
 import JDApp from "../model/JDApp";
 import Theme from "../theme/Theme";
 import Profile from "../model/Profile";
+import Auth from "../firebase/Auth";
 
 export default function PartyScreen() {
     const navigate = useNavigate();
@@ -131,5 +132,24 @@ export default function PartyScreen() {
                 Open App Store
             </CircleButton>
         </Card>
+        {
+            organizer.id === Auth.auth.currentUser?.uid ? <>
+            <Button
+                style={{
+                    display: 'block',
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                    margin: Theme.dimSpacing / 2,
+                    backgroundColor: Theme.colorError,
+                    color: Theme.colorOnError,
+                }}
+                onClick={() => {
+                    alert("Can't delete party from UI yet.");
+                }}
+            >
+                Delete party
+            </Button>
+
+            </> : <></>
+        }
     </Screen>;
 }
