@@ -143,7 +143,18 @@ export default function PartyScreen() {
                     color: Theme.colorOnError,
                 }}
                 onClick={() => {
-                    alert("Can't delete party from UI yet.");
+                    const ans = prompt("Type in the party's title to delete it!");
+                    if (ans === party.title) {
+                        Firestore.removeParty(party.id)
+                        .then(() => {
+                            alert('Party removed!');
+                            navigate('/');
+                        })
+                        .catch(err => alert('Party not removed, try again!'));
+                    }
+                    else {
+                        alert('Party not removed, try again!');
+                    }
                 }}
             >
                 Delete party
