@@ -123,31 +123,45 @@ export default function NewPartyScreen() {
                     games.map(game => <option value={game.name}>{game.name}</option>)
                 }
             </select>
-            <label
-                style={{
-                    display: 'block',
-                    margin: Theme.dimSpacing / 2,
-                    width: `calc(100% - ${Theme.dimSpacing}px)`,
-                }}
-            >
-                <input
-                    type="checkbox"
-                    checked={party.unlimited}
-                    onChange={e => setParty({ ...party, unlimited: e.target.checked })}
-                />
-                <span style={{ marginLeft: Theme.dimSpacing / 2, }}>
-                    Unlimited
-                </span>
-            </label>
+            {
+                games.find(r => r.name === party.game)?.unlimitedAvailable ?
+                    <label
+                        style={{
+                            display: 'block',
+                            margin: Theme.dimSpacing / 2,
+                            width: `calc(100% - ${Theme.dimSpacing}px)`,
+                        }}
+                    >
+                        <input
+                            type="checkbox"
+                            checked={party.unlimited}
+                            onChange={e => setParty({ ...party, unlimited: e.target.checked })}
+                        />
+                        <span style={{ marginLeft: Theme.dimSpacing / 2, }}>
+                            Unlimited
+                        </span>
+                    </label> :
+                    <>
+                        <p
+                            style={{
+                                display: 'block',
+                                margin: Theme.dimSpacing / 2,
+                            }}
+                        >
+                            Unlimited not available for this game.
+                        </p>
+                        {party.unlimited ? setParty({ ...party, unlimited: false }) : <></>}
+                    </>
+            }
             <Button
                 style={{
                     margin: Theme.dimSpacing / 2,
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
                 }}
                 onClick={() => {
-                    if (isOverride) {
-                        Firestore.updateParty(party)
-                            .then(() => navigate(`/party/${party.id}`))
+                    if (isOverride && params.id) {
+                        Firestore.updateParty({ ...party, id: params.id })
+                            .then(() => navigate(`/party/${params.id}`))
                             .catch(err => alert("Couldn't update party."));
                     }
                     else {
