@@ -82,5 +82,12 @@ export default function HomeScreen() {
                     }
                 </>
         }
+        <Card style={{ margin: Theme.dimSpacing / 2, }}>
+            <h3 style={{ marginBottom: Theme.dimSpacing / 2, }}>Did you know?</h3>
+            <p>
+                You can install this website as an app.
+                Just add it to your home screen and it will work like a regular phone application.
+            </p>
+        </Card>
     </Screen>;
 }
