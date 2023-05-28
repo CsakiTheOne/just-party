@@ -20,6 +20,7 @@ function App() {
         <Route path='settings' element={<SettingsScreen />} />
         <Route path='party/:id' element={<PartyScreen />} />
         <Route path='party/new' element={<NewPartyScreen />} />
+        <Route path='party/new/:id' element={<NewPartyScreen />} />
         <Route path='*' element={404} />
       </Routes>
     </BrowserRouter>

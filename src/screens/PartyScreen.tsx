@@ -134,31 +134,45 @@ export default function PartyScreen() {
         </Card>
         {
             organizer.id === Auth.auth.currentUser?.uid ? <>
-            <Button
-                style={{
-                    display: 'block',
-                    width: `calc(100% - ${Theme.dimSpacing}px)`,
-                    margin: Theme.dimSpacing / 2,
-                    backgroundColor: Theme.colorError,
-                    color: Theme.colorOnError,
-                }}
-                onClick={() => {
-                    const ans = prompt("Type in the party's title to delete it!");
-                    if (ans === party.title) {
-                        Firestore.removeParty(party.id)
-                        .then(() => {
-                            alert('Party removed!');
-                            navigate('/');
-                        })
-                        .catch(err => alert('Party not removed, try again!'));
-                    }
-                    else {
-                        alert('Party not removed, try again!');
-                    }
-                }}
-            >
-                Delete party
-            </Button>
+                <Button
+                    style={{
+                        display: 'block',
+                        width: `calc(100% - ${Theme.dimSpacing}px)`,
+                        margin: Theme.dimSpacing / 2,
+                        backgroundColor: Theme.colorError,
+                        color: Theme.colorOnError,
+                    }}
+                    onClick={() => {
+                        navigate(`/party/new/${params.id}`);
+                    }}
+                >
+                    Edit party
+                </Button>
+                <Button
+                    style={{
+                        display: 'block',
+                        width: `calc(100% - ${Theme.dimSpacing}px)`,
+                        margin: Theme.dimSpacing / 2,
+                        backgroundColor: Theme.colorError,
+                        color: Theme.colorOnError,
+                    }}
+                    onClick={() => {
+                        const ans = prompt("Type in the party's title to delete it!");
+                        if (ans === party.title) {
+                            Firestore.removeParty(party.id)
+                                .then(() => {
+                                    alert('Party removed!');
+                                    navigate('/');
+                                })
+                                .catch(err => alert('Party not removed, try again!'));
+                        }
+                        else {
+                            alert('Party not removed, try again!');
+                        }
+                    }}
+                >
+                    Delete party
+                </Button>
 
             </> : <></>
         }

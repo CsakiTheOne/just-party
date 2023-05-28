@@ -48,6 +48,10 @@ export default class Firestore {
             .then(res => res.id);
     }
 
+    static updateParty(party: Party): Promise<void> {
+        return setDoc(doc(this.db, `parties/${party.id}`), party);
+    }
+
     static removeParty(id: string): Promise<void> {
         return deleteDoc(doc(this.db, `parties/${id}`));
     }

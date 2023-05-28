@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/base/Button";
 import Card from "../components/base/Card";
 import Screen from "../components/base/Screen";
@@ -14,8 +14,10 @@ import Party from "../model/Party";
 
 export default function NewPartyScreen() {
     const navigate = useNavigate();
+    const params = useParams();
     const [profile, setProfile] = useState(new Profile());
     const [games, setGames] = useState<Game[]>([]);
+    const [isOverride, setIsOverride] = useState(false);
     const [party, setParty] = useState(new Party());
 
     useEffect(() => {
@@ -34,7 +36,12 @@ export default function NewPartyScreen() {
             });
         Firestore.getGames()
             .then(newGames => setGames(newGames));
-    }, [navigate]);
+        if (params.id && params.id.length > 2) {
+            setIsOverride(true);
+            Firestore.getParty(params.id)
+                .then(newParty => setParty(newParty));
+        }
+    }, [navigate, params]);
 
     return <Screen>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
@@ -138,12 +145,19 @@ export default function NewPartyScreen() {
                     width: `calc(100% - ${Theme.dimSpacing}px)`,
                 }}
                 onClick={() => {
-                    Firestore.createParty({ ...party, country: LocalStorage.getCountry()!, organizer: profile.id })
-                        .then(id => navigate(`/party/${id}`))
-                        .catch(err => alert("Couldn't create party."));
+                    if (isOverride) {
+                        Firestore.updateParty(party)
+                            .then(id => navigate(`/party/${id}`))
+                            .catch(err => alert("Couldn't create party."));
+                    }
+                    else {
+                        Firestore.createParty({ ...party, country: LocalStorage.getCountry()!, organizer: profile.id })
+                            .then(id => navigate(`/party/${id}`))
+                            .catch(err => alert("Couldn't create party."));
+                    }
                 }}
             >
-                Create
+                {isOverride ? 'Update' : 'Create'}
             </Button>
         </Card>
     </Screen>;
