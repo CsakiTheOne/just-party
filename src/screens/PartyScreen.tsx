@@ -139,8 +139,6 @@ export default function PartyScreen() {
                         display: 'block',
                         width: `calc(100% - ${Theme.dimSpacing}px)`,
                         margin: Theme.dimSpacing / 2,
-                        backgroundColor: Theme.colorError,
-                        color: Theme.colorOnError,
                     }}
                     onClick={() => {
                         navigate(`/party/new/${params.id}`);
