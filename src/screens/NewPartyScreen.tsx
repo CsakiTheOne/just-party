@@ -147,8 +147,8 @@ export default function NewPartyScreen() {
                 onClick={() => {
                     if (isOverride) {
                         Firestore.updateParty(party)
-                            .then(id => navigate(`/party/${id}`))
-                            .catch(err => alert("Couldn't create party."));
+                            .then(() => navigate(`/party/${party.id}`))
+                            .catch(err => alert("Couldn't update party."));
                     }
                     else {
                         Firestore.createParty({ ...party, country: LocalStorage.getCountry()!, organizer: profile.id })
