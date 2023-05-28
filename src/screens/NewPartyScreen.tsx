@@ -153,6 +153,21 @@ export default function NewPartyScreen() {
                         {party.unlimited ? setParty({ ...party, unlimited: false }) : <></>}
                     </>
             }
+            <TextField
+                hint='Screen (size, OLED?, etc.)'
+                list='screens'
+                value={party.screen}
+                onChange={(e: string) => setParty({ ...party, screen: e })}
+                style={{
+                    margin: Theme.dimSpacing / 2,
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                }}
+            />
+            <datalist id="screens">
+                <option value="6.2inch 720p LCD (Nintendo Switch)">Nintendo Switch</option>
+                <option value="7inch 720p OLED (Nintendo Switch)">Nintendo Switch OLED</option>
+                <option value="5.5inch 720p LCD (Nintendo Switch)">Nintendo Switch Lite</option>
+            </datalist>
             <Button
                 style={{
                     margin: Theme.dimSpacing / 2,

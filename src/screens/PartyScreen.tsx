@@ -119,18 +119,23 @@ export default function PartyScreen() {
                 <span className="material-symbols-outlined">install_mobile</span> {game.app}<br />
                 (You have to download this if you want to be scored.)
             </p>
-            <CircleButton
-                style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
-                onClick={() => window.open(app.downloadAndroid, '_blank')}
-            >
-                Open Google Play Store
-            </CircleButton>
-            <CircleButton
-                style={{ display: 'block', width: '100%', }}
-                onClick={() => window.open(app.downloadIOS, '_blank')}
-            >
-                Open App Store
-            </CircleButton>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%', }}>
+                <CircleButton
+                    style={{ display: 'inline-block', marginBottom: Theme.dimSpacing, }}
+                    onClick={() => window.open(app.downloadAndroid, '_blank')}
+                >
+                    Google Play Store
+                </CircleButton>
+                <CircleButton
+                    style={{ display: 'inline-block', marginBottom: Theme.dimSpacing, }}
+                    onClick={() => window.open(app.downloadIOS, '_blank')}
+                >
+                    App Store
+                </CircleButton>
+            </div>
+            <p style={{ marginBottom: Theme.dimSpacing, }}>
+                <span className="material-symbols-outlined">tv</span> {party.screen}
+            </p>
         </Card>
         {
             organizer.id === Auth.auth.currentUser?.uid ? <>

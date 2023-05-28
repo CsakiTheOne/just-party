@@ -8,4 +8,5 @@ export default class Party {
     place: string = '';
     game: string = '';
     unlimited: boolean = false;
+    screen: string = '';
 }

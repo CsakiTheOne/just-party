@@ -14,5 +14,6 @@ export default function TextField(props: any) {
         value={props.value}
         onChange={e => props.onChange(e.target.value)}
         placeholder={props.hint}
+        list={props.list}
     />;
 }
