@@ -39,7 +39,13 @@ export default function NewPartyScreen() {
         if (params.id && params.id.length > 2) {
             setIsOverride(true);
             Firestore.getParty(params.id)
-                .then(newParty => setParty(newParty));
+                .then(newParty => {
+                    setParty(newParty);
+                    if (newParty.organizer !== Auth.auth.currentUser?.uid) {
+                        alert('You are not the organizer of this party!');
+                        navigate('/');
+                    }
+                });
         }
     }, [navigate, params]);
 
@@ -55,7 +61,7 @@ export default function NewPartyScreen() {
                 width: `calc(100% - ${Theme.dimSpacing}px)`,
                 margin: Theme.dimSpacing / 2,
             }}
-            onClick={() => navigate('/')}
+            onClick={() => navigate(-1)}
         >
             Go back
         </Button>
@@ -164,9 +170,9 @@ export default function NewPartyScreen() {
                 }}
             />
             <datalist id="screens">
-                <option value="6.2inch 720p LCD (Nintendo Switch)">Nintendo Switch</option>
-                <option value="7inch 720p OLED (Nintendo Switch)">Nintendo Switch OLED</option>
-                <option value="5.5inch 720p LCD (Nintendo Switch)">Nintendo Switch Lite</option>
+                <option value="6.2in. 720p LCD (Nintendo Switch)">Nintendo Switch</option>
+                <option value="7in. 720p OLED (Nintendo Switch)">Nintendo Switch OLED</option>
+                <option value="5.5in. 720p LCD (Nintendo Switch)">Nintendo Switch Lite</option>
             </datalist>
             <Button
                 style={{

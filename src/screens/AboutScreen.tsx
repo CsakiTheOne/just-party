@@ -45,7 +45,7 @@ export default function AboutScreen() {
                 margin: Theme.dimSpacing / 2,
             }}
         >
-            <h3 style={{ marginBottom: 8 }}>Contributors</h3>
+            <h3 style={{ marginBottom: 8 }}>Contributors and supporters</h3>
             <p style={{ marginBottom: 8 }}>¯\_(ツ)_/¯</p>
             <Button
                 style={{
