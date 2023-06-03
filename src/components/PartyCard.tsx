@@ -13,7 +13,7 @@ export default function PartyCard(props: any) {
         {/*<p>by {props.party.organizer}</p>*/}
         <p><span className="material-symbols-outlined">event</span> {props.party.time}</p>
         <p><span className="material-symbols-outlined">pin_drop</span> {props.party.place}</p>
-        <p><span className="material-symbols-outlined">live_tv</span> {props.party.game}{props.party.unlimited ? ' + Unlimited' : ''}</p>
+        <p><span className="material-symbols-outlined">live_tv</span> {props.party.game}</p>
         <div style={{ display: 'flex', justifyContent: 'flex-end', }}>
             <CircleButton
                 style={{

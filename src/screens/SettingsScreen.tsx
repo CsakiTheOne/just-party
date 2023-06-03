@@ -116,5 +116,19 @@ export default function SettingsScreen() {
                 }
             </div>
         </Card>
+        <Card style={{ margin: Theme.dimSpacing / 2, }}>
+            <h3 style={{ margin: Theme.dimSpacing / 2, }}>Debug</h3>
+            <CircleButton
+                style={{
+                    margin: Theme.dimSpacing / 2,
+                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                }}
+                onClick={() => {
+                    Firestore.update();
+                }}
+            >
+                Update database scheme
+            </CircleButton>
+        </Card>
     </Screen>;
 }

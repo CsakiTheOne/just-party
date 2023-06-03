@@ -11,6 +11,14 @@ export default class Firestore {
 
     static db = getFirestore(app);
 
+    static update() {
+        setDoc(doc(this.db, 'games/jdn'), { app: 'Just Dance Now', name: 'Just Dance Now', optionalContents: [], } as Game);
+        for (let i = 16; i < 23; i++) {
+            setDoc(doc(this.db, 'games/jd' + i), { app: 'Just Dance Controller', name: 'Just Dance 20' + i, optionalContents: ['Unlimited'], } as Game);
+        }
+        setDoc(doc(this.db, 'games/jd23'), { app: 'Just Dance 2023 Controller', name: 'Just Dance', optionalContents: ['Just Dance+', '2023 Edition'], } as Game);
+    }
+
     static isUserOrganizer(): Promise<boolean> {
         return getDoc(doc(this.db, `users/${Auth.auth.currentUser?.uid}`))
             .then(res => {

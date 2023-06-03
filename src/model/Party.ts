@@ -7,6 +7,6 @@ export default class Party {
     country: string = '';
     place: string = '';
     game: string = '';
-    unlimited: boolean = false;
+    optionalContent: string[] = [];
     screen: string = '';
 }

@@ -107,8 +107,12 @@ export default function PartyScreen() {
                 <span className="material-symbols-outlined">pin_drop</span> {party.place}
             </p>
             <p style={{ marginBottom: Theme.dimSpacing, }}>
-                <span className="material-symbols-outlined">live_tv</span> {party.game}{party.unlimited ? ' + Unlimited' : ''}
+                <span className="material-symbols-outlined">live_tv</span> {party.game}
             </p>
+            {
+                party.optionalContent ?
+                    party.optionalContent.map(r => <p style={{ marginBottom: Theme.dimSpacing, }}>+ {r}</p>) : <></>
+            }
             <CircleButton
                 style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
                 onClick={() => alert('Not available yet!')}

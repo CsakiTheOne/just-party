@@ -130,23 +130,33 @@ export default function NewPartyScreen() {
                 }
             </select>
             {
-                games.find(r => r.name === party.game)?.unlimitedAvailable ?
-                    <label
-                        style={{
-                            display: 'block',
-                            margin: Theme.dimSpacing / 2,
-                            width: `calc(100% - ${Theme.dimSpacing}px)`,
-                        }}
-                    >
-                        <input
-                            type="checkbox"
-                            checked={party.unlimited}
-                            onChange={e => setParty({ ...party, unlimited: e.target.checked })}
-                        />
-                        <span style={{ marginLeft: Theme.dimSpacing / 2, }}>
-                            Unlimited
-                        </span>
-                    </label> :
+                games.find(r => r.name === party.game)?.optionalContents &&
+                    games.find(r => r.name === party.game)!.optionalContents.length > 0 ?
+                    <>
+                        {games.find(r => r.name === party.game)!.optionalContents.map(content =>
+                            <label
+                                style={{
+                                    display: 'block',
+                                    margin: Theme.dimSpacing / 2,
+                                    width: `calc(100% - ${Theme.dimSpacing}px)`,
+                                }}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={party.optionalContent?.includes(content)}
+                                    onChange={e => {
+                                        let newList = party.optionalContent ? [...party.optionalContent] : [];
+                                        if (newList.includes(content)) newList = newList.filter(r => r !== content);
+                                        else newList.push(content);
+                                        setParty({ ...party, optionalContent: newList });
+                                    }}
+                                />
+                                <span style={{ marginLeft: Theme.dimSpacing / 2, }}>
+                                    {content}
+                                </span>
+                            </label>
+                        )}
+                    </> :
                     <>
                         <p
                             style={{
@@ -154,9 +164,12 @@ export default function NewPartyScreen() {
                                 margin: Theme.dimSpacing / 2,
                             }}
                         >
-                            Unlimited not available for this game.
+                            There are no optional contents for this game.
                         </p>
-                        {party.unlimited ? setParty({ ...party, unlimited: false }) : <></>}
+                        {
+                            party.optionalContent && party.optionalContent.length > 0 ?
+                                setParty({ ...party, optionalContent: [] }) : <></>
+                        }
                     </>
             }
             <TextField
