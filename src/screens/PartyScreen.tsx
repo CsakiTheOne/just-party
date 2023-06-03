@@ -115,7 +115,7 @@ export default function PartyScreen() {
             }
             <CircleButton
                 style={{ display: 'block', marginBottom: Theme.dimSpacing, width: '100%', }}
-                onClick={() => alert('Not available yet!')}
+                onClick={() => navigate('/songs')}
             >
                 Check song list
             </CircleButton>

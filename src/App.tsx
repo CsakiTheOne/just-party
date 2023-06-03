@@ -6,6 +6,7 @@ import AboutScreen from './screens/AboutScreen';
 import PartyScreen from './screens/PartyScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import NewPartyScreen from './screens/NewPartyScreen';
+import SongsScreen from './screens/SongsScreen';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route index element={<HomeScreen />} />
         <Route path='about' element={<AboutScreen />} />
         <Route path='settings' element={<SettingsScreen />} />
+        <Route path='songs' element={<SongsScreen />} />
         <Route path='party/:id' element={<PartyScreen />} />
         <Route path='party/new' element={<NewPartyScreen />} />
         <Route path='party/new/:id' element={<NewPartyScreen />} />
