@@ -40,6 +40,16 @@ export default function HomeScreen() {
         >
             Public Just Dance parties where anyone can join!
         </Button>
+        <Button
+            style={{
+                display: 'block',
+                width: `calc(100% - ${Theme.dimSpacing}px)`,
+                margin: Theme.dimSpacing / 2,
+            }}
+            onClick={() => window.open('https://calendar.google.com/calendar/u/0?cid=N2RjMzI2NzhjNWUwNjRmZTQyYjQwOTU0ZWNmMTE3NjQxOTY2ZmRlMGJjODU3MmQzMTYyNWJhYzkxNDIxN2JhMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t', '_blank')}
+        >
+            Join Google Calendar for Csáki's events
+        </Button>
         {
             isSetupNeeded ?
                 <Card style={{ margin: Theme.dimSpacing / 2, }}>
